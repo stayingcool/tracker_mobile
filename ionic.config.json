@@ -1,0 +1,7 @@
+{
+  "name": "ca_learning",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

@@ -1,0 +1,68 @@
+<!--
+  Generated template for the CreatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Create New Meeting</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card color="secondary" *ngIf="user_img">
+    <ion-item>
+      <img class="img" [src]="sanitizer.bypassSecurityTrustUrl(user_img)" />
+    </ion-item>
+    <ion-card-content>
+      <ion-card-header>
+        QR Code
+      </ion-card-header>
+    </ion-card-content>
+
+    <div padding>
+      <button ion-button color="secondary" block (click)=sendEmail()>Email</button>
+    </div>
+  </ion-card>
+
+  <ion-card>
+    <img src="../../assets/imgs/company-3382518_640.jpg" />
+    <form [formGroup]="meetingDetailsFG" (ngSubmit)="createMeeting()">
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Name:</ion-label>
+          <ion-input type="text" formControlName="name" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Location:</ion-label>
+          <ion-input type="text" formControlName="location" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Date:</ion-label>
+          <ion-datetime displayFormat="MMM DD YYYY" formControlName="date" required></ion-datetime>
+          <!-- <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.month"></ion-datetime> -->
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Time:</ion-label>
+          <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="time" required></ion-datetime>
+        </ion-item>
+      </ion-list>
+
+
+      <div padding>
+        <button ion-button color="my-red" block [disabled]="!meetingDetailsFG.valid">Save</button>
+      </div>
+    </form>
+
+
+  </ion-card>
+
+
+</ion-content>

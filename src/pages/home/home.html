@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar color="my-brown">
+    <ion-title>CA Learning</ion-title>
+    <ion-buttons start>
+      <button ion-button color="danger" icon-only showWhen="ios">
+        <ion-icon name="settings"></ion-icon>
+      </button>
+      <button ion-button icon-only hideWhen="ios" (click)=toggleShowSettings()>
+        <ion-icon name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-content padding>
+
+    <ion-card>
+      <ion-card-content *ngIf="showSettings">
+        <ion-card-header>
+          Enter your details:
+        </ion-card-header>
+        <ion-card-content color="my-brown">
+          <form [formGroup]="userDetailsFG" (ngSubmit)="saveUser()">
+            <ion-list>
+              <ion-item>
+                <ion-label floating>Name</ion-label>
+                <ion-input type="text" formControlName="name" [(ngModel)]="name" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label floating>UserID</ion-label>
+                <ion-input type="text" formControlName="userID" [(ngModel)]="userID" required></ion-input>
+              </ion-item>
+            </ion-list>
+            <div padding>
+              <button ion-button color="my-red" block [disabled]="!userDetailsFG.valid">Save</button>
+            </div>
+          </form>
+        </ion-card-content>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card color="secondary" *ngIf="QRCode">
+      <img src="../../assets/imgs/check-3442527_640.png" />
+      <ion-card-content>
+        <ion-card-header>
+          All set, Please proceed!
+        </ion-card-header>
+        <ion-item text-wrap>
+          Meeting ID: {{ QRCode }}
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card text-wrap>
+      <ion-card-content>
+          <img src="../../assets/imgs/hands-1167612_640.jpg" />
+          <ion-card-header>
+              To attend meeting, Scan the QR Code of your meeting.
+            </ion-card-header>
+        <p text-wrap>
+          <button ion-button full icon-left (click)=scanQRCode() color="my-red">
+            <ion-icon name="qr-scanner"></ion-icon>Scan</button>
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+
+
+  </ion-content>

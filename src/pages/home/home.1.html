@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>CA Learning!</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+
+    </ion-card-header>
+
+    <ion-card-content>
+      <!-- <p>
+        <button ion-button full icon-left>
+          <ion-icon name="add-circle"></ion-icon>Create New Learning Session</button>
+      </p> -->
+      <p>
+        <button ion-button full icon-left (click)=scanQRCode()>
+          <ion-icon name="qr-scanner"></ion-icon>Scan QR Code</button>
+      </p>
+    </ion-card-content>
+
+  </ion-card>
+  <ion-card>
+    <ion-card-content *ngIf="QRCode">
+      <ion-card-header>
+        All set, Please go ahead!
+      </ion-card-header>
+
+      <ion-item-divider color="light">
+        <ion-item text-wrap>
+          Meeting ID: {{ QRCode }}
+        </ion-item>
+      </ion-item-divider>
+
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
