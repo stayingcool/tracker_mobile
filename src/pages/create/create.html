@@ -5,25 +5,16 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Create New Meeting</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-  <ion-card color="secondary" *ngIf="user_img">
-    <ion-item>
-      <img class="img" [src]="sanitizer.bypassSecurityTrustUrl(user_img)" />
-    </ion-item>
+  <ion-card *ngIf="user_img">
     <ion-card-content>
-      <ion-card-header>
-        QR Code
-      </ion-card-header>
+      <img class="img" [src]="sanitizer.bypassSecurityTrustUrl(user_img)" />
     </ion-card-content>
-
     <div padding>
       <button ion-button color="secondary" block (click)=sendEmail()>Email</button>
     </div>

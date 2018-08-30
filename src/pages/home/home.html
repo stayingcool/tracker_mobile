@@ -24,12 +24,12 @@
           <form [formGroup]="userDetailsFG" (ngSubmit)="saveUser()">
             <ion-list>
               <ion-item>
-                <ion-label floating>Name</ion-label>
-                <ion-input type="text" formControlName="name" [(ngModel)]="name" required></ion-input>
+                <ion-label stacked>Name</ion-label>
+                <ion-input type="text" placeholder="Full Name" formControlName="name" [(ngModel)]="name" required></ion-input>
               </ion-item>
               <ion-item>
-                <ion-label floating>UserID</ion-label>
-                <ion-input type="text" formControlName="userID" [(ngModel)]="userID" required></ion-input>
+                <ion-label stacked>Email</ion-label>
+                <ion-input type="text" placeholder="pmfkey@ca.com" formControlName="userID" [(ngModel)]="userID" required></ion-input>
               </ion-item>
             </ion-list>
             <div padding>
