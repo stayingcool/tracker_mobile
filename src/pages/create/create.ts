@@ -48,6 +48,14 @@ export class CreatePage {
     });
   }
 
+  ionViewDidEnter() {
+    this._storage.get('userID').then((val) => {
+      this.userID = val;
+      console.log('Fetched user id: Your userid is:', val);
+      if(!val)
+        this.showToastWithButton('Please go to settings to set your information.', 'middle');
+    });
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreatePage');
   }
