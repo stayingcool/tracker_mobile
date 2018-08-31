@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 import { MeetingService } from '../../services/meeting';
 import { Meeting } from '../../model/meeting';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -26,7 +25,7 @@ export class CreatePage {
   attachment: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public meetingService: MeetingService,
-    private formBuilder: FormBuilder, private base64ToGallery: Base64ToGallery, private sanitizer: DomSanitizer,
+    private formBuilder: FormBuilder, private sanitizer: DomSanitizer,
     private emailComposer: EmailComposer, public toastCtrl: ToastController, private _storage: Storage
   ) {
     this._storage.get('userID').then((val) => {
@@ -56,6 +55,7 @@ export class CreatePage {
         this.showToastWithButton('Please go to settings to set your information.', 'middle');
     });
   }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreatePage');
   }
@@ -68,6 +68,7 @@ export class CreatePage {
       console.log(this.meeting.img);
       this.attachment = 'base64:qrcode.png//' + this.meeting.img;
       this.user_img = "data:Image/*;base64," + this.meeting.img;
+      this.saveMeetingInHistory(this.meeting);
     })
       .catch(error => {
         console.log("Error encountered :-(");
@@ -89,6 +90,29 @@ export class CreatePage {
       isHtml: true
     };
     this.emailComposer.open(email);
+  }
+
+  saveMeetingInHistory(meeting: Meeting):void{
+    let meetingsArray = [];
+
+    this._storage.get('session').then(res => {
+      if(res){
+        console.log('Retrieved history successfully');
+        meetingsArray = res;
+        meetingsArray.push(meeting);
+        this._storage.set('session',meetingsArray).then(res => {
+          console.log('Stored history successfully');
+        });
+      }
+      else{
+        console.log('No history found. Going to create first record');
+        meetingsArray.push(meeting);
+        this._storage.set('session',meetingsArray).then(res => {
+          console.log('Stored history successfully');
+        });
+      }
+    });
+
   }
 
   showToastWithButton(message: string, position): void {
