@@ -11,6 +11,7 @@ import { HistoryPage } from '../pages/history/history';
 
 import { MeetingService } from '../services/meeting';
 import { AttendanceService } from '../services/attendance';
+import { UtilityService } from '../services/utilities';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -49,6 +50,7 @@ import { File } from '@ionic-native/file';
   providers: [
     HTTP,
     File,
+    UtilityService,
     EmailComposer,
     MeetingService,
     AttendanceService,

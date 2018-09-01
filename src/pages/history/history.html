@@ -1,14 +1,21 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>My Meetings</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-<ion-content padding *ngIf = "meetings">
+<ion-content padding>
+  <ion-card *ngIf="!meetings">
+    <img src="../../assets/imgs/crowd-2045499_640.jpg" />
+    <ion-card-content>
+      <p>
+        <b>All the meetings you created will show up here.</b>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
   <ion-card *ngFor="let meeting of meetings">
-   <img src="../../assets/imgs/crowd-2045499_640.jpg"/>
+    <img src="../../assets/imgs/crowd-2045499_640.jpg" />
     <ion-card-content>
       <ion-card-title>
         {{meeting.title}}
@@ -17,7 +24,5 @@
         <b>Meeting ID: </b> {{meeting.id}}
       </p>
     </ion-card-content>
-    <button ion-button color="secondary" (click)="email(meeting.id)" block>Email Participants</button>
+    <button ion-button color="secondary" (click)="sendEmail(meeting.id)" block>Email Participants</button>
   </ion-card>
-
-</ion-content>
